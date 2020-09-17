@@ -1,9 +1,11 @@
+const { static } = require('express');
+const { query } = require('./con');
 const db = require('./con');
 
 class LanguageList {
-    constructor (language, score) {
+    constructor (language, rank_id) {
         this.language = language;
-        this.score = score;
+        this.rank_id = rank_id;
     }
 
     static async getAll() {
@@ -14,6 +16,17 @@ class LanguageList {
             return error.message;
         }
     }
+
+    static async updateStatus(language, rank_id) {
+        try {
+            const response = await db.result(`UPDATE languages SET rank_id = $1 WHERE language =$2;`, [rank_id, language]);
+            return response;
+        } catch(error){
+            console.log("Error:", error);
+        }
+    }
 }
+
+
 
 module.exports = LanguageList;

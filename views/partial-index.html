@@ -1,6 +1,16 @@
 <div class="content is-large">
     <h1>${title}</h1>
-    <ul>
+    <form action="/" method="POST"> <!--FORM ACTION is the URL where you're sending the data-->
+        ${data.map(language => `<p>${language.language} - I am 
+            <select name='${language.Rank}'>
+                
+                <option value="${language.Rank}">${language.Rank}</option>
+            </select> 
+            at ${language.language}, giving it a score of ${language.Score}.</p>`).join('')}
+        <button type="submit">Update Data</button>
+    </form>
+    <!-- <ul>
         ${data.map(language => `<li>${language.language} is ${language.Rank} and scores a ${language.Score}</li>`).join('')}
-    </ul>
+    </ul> -->
+    <img src="./images/voltron.jpeg" alt="NEP Voltron" width="500" height="auto">
 </div>

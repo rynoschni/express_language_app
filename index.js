@@ -11,9 +11,12 @@ const app = express();
 app.engine("html", es6Renderer);
 app.set('views', './views');
 app.set('view engine', 'html');
+// app.use('images','./images');
 
 // app.use(express.static(path.join(__dirname, "public"))); //bullet proof needs path library
 app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 const server = http.createServer(app);
 
